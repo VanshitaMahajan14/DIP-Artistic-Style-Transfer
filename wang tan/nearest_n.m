@@ -30,11 +30,13 @@ elseif opt == 1
    
     RXp = Vp.T * (RX-mp);
     dif = repmat(RXp, [1 size(Pp,2)]) - Pp;
+
     sqr = sum(dif.^2, 1);
     sqr = sqr+0.1*min(sqr)*randn(size(sqr)); % add some noise to NN 
     [~, idx] = min(sqr);
 %     ls = mod(idx-1, (w-Q_size+1)) + 1;
 %     ks = floor((idx-1)/(w-Q_size+1)) + 1;
+
     [ls,ks]=ind2sub([(floor( ((w-Q_size+1)-1)/Pstride ) + 1) (floor( ((h-Q_size+1)-1)/Pstride ) + 1 )],ceil(idx/4)); %flipped since ind goes across rows, then down columns 
     ks=(ks-1)*Pstride+1;
     ls=(ls-1)*Pstride+1;
