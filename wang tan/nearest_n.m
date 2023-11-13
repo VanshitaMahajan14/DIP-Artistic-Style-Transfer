@@ -1,7 +1,10 @@
 function [ks, ls, z,ang] = nearest_n(R, X, Q_size, S, h, w, c, Pp,Vp,Pstride,mp,L, gap)
 %Q_size=uint8(sqrt(sum(R(:)/3)))
+
 opt = 1;
+
 % [h,w,c] = size(S);
+
 S = reshape(S, [h w c]);
 RX = X(logical(R));
 min_l2 = Inf;
@@ -14,7 +17,9 @@ if opt == 0
 %             patch = S(k:k+Q_size-1,j:j+Q_size-1,:);
 %             diff = RX - patch(:);
 %             sqr = sum(diff .* diff);
-%             if sqr < min_l2
+%             i%remove mean from P
+        mp=mean(P,2);
+        P=P-repmat(mp,1,size(P,2));f sqr < min_l2
 %                 min_l2 = sqr;
 %                 ks = k; ls = j;
 %             end
@@ -25,6 +30,7 @@ if opt == 0
   tic; sqr=sum((temp-P).^2,1);toc;
     [~,idx]=min(sqr);
     [ls,ks]=ind2sub([(w-Q_size+1) (h-Q_size+1)],idx); %flipped since ind goes across rows, then down columns 
+    
 elseif opt == 1
 
    

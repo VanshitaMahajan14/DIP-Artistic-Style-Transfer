@@ -106,7 +106,6 @@ for L=scales
             disp('robust aggregation')
             [Xtilde]=irls(Rall,X,z);
             
-            
             % 4. Content Fusion
             disp('content fusion')
             W = repmat(Wcoeff*mask(:)/max(mask(:)),c,1);
