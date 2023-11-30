@@ -101,7 +101,7 @@ for L=scales
                     z(:,(ceil(i/gap)-1)*(floor( ((w-Q_size+1)-1)/gap )+ 1) + ceil(j/gap))=temp(:);
                 end
             end
-            
+            (flat_mask)
             % 3. Style Synthesis
             disp('robust aggregation')
             [Xtilde]=irls(Rall,X,z);
@@ -115,7 +115,7 @@ for L=scales
             % 5. Color Transfer
             disp('color transfer')
             X=imhistmatch(reshape(Xhat,h,w,c),reshape(S,h,w,c));
-
+            
             
             % 6. Denoise
             disp('denoise')
