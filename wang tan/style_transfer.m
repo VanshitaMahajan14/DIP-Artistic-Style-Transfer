@@ -101,7 +101,9 @@ for L=scales
                     z(:,(ceil(i/gap)-1)*(floor( ((w-Q_size+1)-1)/gap )+ 1) + ceil(j/gap))=temp(:);
                 end
             end
-            (flat_mask)
+
+            
+
             % 3. Style Synthesis
             disp('robust aggregation')
             [Xtilde]=irls(Rall,X,z);
